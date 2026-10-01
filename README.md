@@ -8,7 +8,7 @@ Landing page oficial de **WASD**, startup de Lima que ayuda a PYMEs a conseguir,
 
 ## Cómo correr el proyecto
 
-Requisitos: Node.js 20 o superior.
+Requisitos: Node.js 20.9 o superior (recomendado 22, ver `.nvmrc`).
 
 ```bash
 npm install
@@ -111,6 +111,12 @@ Para medir un botón nuevo, agrégale `data-track="evento"` y `data-track-label=
 4. En **Settings → Domains**, conecta tu dominio `.pe` y actualiza `NEXT_PUBLIC_SITE_URL`.
 
 Como el sitio es estático (`/out`), también funciona en Netlify, Cloudflare Pages o cualquier hosting de archivos.
+
+---
+
+## Cómo colaborar
+
+Trabajamos con ramas y pull requests hacia `main`. Las convenciones de ramas, commits, nombres y estructura están en [CONTRIBUTING.md](CONTRIBUTING.md). Cada pull request pasa por CI (lint, TypeScript y build).
 
 ---
 
