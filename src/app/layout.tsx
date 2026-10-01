@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import { site } from "@/data/site";
 import { Analytics } from "@/components/Analytics";
 import { RevealObserver } from "@/components/ui/RevealObserver";
@@ -7,16 +7,19 @@ import { themeInitScript } from "@/components/ui/ThemeToggle";
 import { TrackClicks } from "@/components/ui/TrackClicks";
 import "./globals.css";
 
-const inter = Inter({
+// Fuentes alojadas en el repo (src/fonts, licencia SIL OFL 1.1): el build no
+// depende de Google Fonts. Son variables, subconjunto latín (cubre español).
+const inter = localFont({
+  src: "../fonts/inter-latin-wght-normal.woff2",
   variable: "--font-inter",
-  subsets: ["latin"],
+  weight: "100 900",
   display: "swap",
 });
 
-const jakarta = Plus_Jakarta_Sans({
+const jakarta = localFont({
+  src: "../fonts/plus-jakarta-sans-latin-wght-normal.woff2",
   variable: "--font-jakarta",
-  subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: "200 800",
   display: "swap",
 });
 

@@ -51,6 +51,7 @@ src/
 │   ├── ui/               # piezas reutilizables (Button, Card, Tabs…)
 │   └── mockups/          # mockups hechos con HTML/CSS
 ├── data/                 # TODO el contenido editable
+├── fonts/                # archivos de fuentes (woff2) y sus licencias
 └── lib/                  # lógica sin interfaz (whatsapp, analytics, lead)
 ```
 
