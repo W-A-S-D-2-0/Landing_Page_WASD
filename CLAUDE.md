@@ -13,3 +13,4 @@ Reglas clave:
 - Fotos y video: solo reales del equipo y de negocios con permiso. Nunca personas o lugares generados con IA ni fotos de stock.
 - No inventar clientes, testimonios, reseñas, logos ni cifras de resultados. Los proyectos van rotulados como "Demo".
 - Antes de entregar: `npm run check` (lint + TypeScript + build).
+- Ramas: `main` es producción y `develop` es integración. Las ramas de trabajo (`feature/`, `content/`, `fix/`, `style/`, `chore/`) salen de `develop` y vuelven a `develop` por pull request; `main` solo recibe `develop` o un `hotfix/`. Detalle en `CONTRIBUTING.md`.

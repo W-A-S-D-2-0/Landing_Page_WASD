@@ -134,7 +134,9 @@ Como el sitio es estático (`/out`), también funciona en Netlify, Cloudflare Pa
 
 ## Cómo colaborar
 
-Trabajamos con ramas y pull requests hacia `main`. Las convenciones de ramas, commits, nombres y estructura están en [CONTRIBUTING.md](CONTRIBUTING.md). Cada pull request pasa por CI (lint, TypeScript y build).
+Trabajamos con dos ramas fijas: `develop` (integración) y `main` (producción). Cada cambio sale de `develop` en su propia rama y vuelve a `develop` con un pull request; para publicar se abre un pull request de `develop` hacia `main`. Las convenciones de ramas, commits, nombres y estructura están en [CONTRIBUTING.md](CONTRIBUTING.md). Cada pull request y cada push a `develop` o `main` pasa por CI (lint, TypeScript y build).
+
+En Vercel, `main` publica el sitio y `develop` genera una URL de vista previa para revisar antes de publicar.
 
 ---
 

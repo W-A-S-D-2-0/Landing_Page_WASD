@@ -10,6 +10,11 @@
 - [ ] Corrección
 - [ ] Configuración / SEO / medición
 
+## Rama destino
+
+- [ ] Va hacia `develop` (cambio normal)
+- [ ] Va hacia `main` (publicación desde `develop` o `hotfix/` urgente)
+
 ## Cómo lo revisé
 
 - [ ] `npm run check` pasa (lint + TypeScript + build)
