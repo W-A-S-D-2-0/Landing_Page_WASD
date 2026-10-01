@@ -1,0 +1,300 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Tokens de color — WASD
+   Claro por defecto, oscuro por preferencia del sistema o por elección del
+   usuario (atributo data-theme en <html>). Los componentes NUNCA usan
+   colores fijos: siempre estas variables (vía las utilidades de Tailwind
+   definidas en @theme más abajo).
+   ========================================================================== */
+:root {
+  color-scheme: light;
+  --bg: #fafaf7;
+  --surface: #ffffff;
+  --surface-alt: #f2f3ef;
+  --border: #e4e5e0;
+  --border-strong: #cfd1ca;
+  --text: #1c2128;
+  --text-muted: #5b6470;
+  --primary: #1f4e5f;
+  --primary-hover: #173d4a;
+  --primary-contrast: #ffffff;
+  --primary-soft: #e6eef0;
+  /* Ámbar: como fondo con texto oscuro. Para texto ámbar usar --accent-ink (AA). */
+  --accent: #c98a3d;
+  --accent-contrast: #1c2128;
+  --accent-ink: #8f5e1f;
+  --accent-soft: #f6ecdd;
+  /* Ajustado desde #2E7D5B para cumplir AA sobre --surface-alt. */
+  --success: #2a7353;
+  --success-soft: #e3f1ea;
+  --danger: #b42318;
+  --shadow: 0 1px 2px rgb(28 33 40 / 0.04), 0 4px 16px rgb(28 33 40 / 0.04);
+
+  /* Colores de los mockups (las "webs de ejemplo" de cada sector). */
+  --mock-cafe: #7a4b2a;
+  --mock-cafe-soft: #f4ebe2;
+  --mock-salon: #3f3a63;
+  --mock-salon-soft: #ebe9f4;
+  --mock-dental: #1f6f8b;
+  --mock-dental-soft: #e3f0f4;
+  --mock-other: #3c5a3a;
+  --mock-other-soft: #e8efe6;
+  --mock-on: #ffffff;
+  --mock-text: #1c2128;
+  --mock-muted: #5b6470;
+  --mock-bg: #ffffff;
+  --mock-line: #ebebe6;
+  --device: #1c2128;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #111418;
+    --surface: #181c22;
+    --surface-alt: #1e232a;
+    --border: #2a3038;
+    --border-strong: #3a424d;
+    --text: #e8eaed;
+    --text-muted: #a3abb6;
+    --primary: #6fb3c4;
+    --primary-hover: #8cc4d2;
+    --primary-contrast: #0e1a1f;
+    --primary-soft: #1a2a30;
+    --accent: #e0a85e;
+    --accent-contrast: #0e1a1f;
+    --accent-ink: #e0a85e;
+    --accent-soft: #2d261c;
+    --success: #5cc197;
+    --success-soft: #17291f;
+    --danger: #f2877d;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.2);
+
+    --mock-text: #e8eaed;
+    --mock-muted: #a3abb6;
+    --mock-bg: #1b2027;
+    --mock-line: #2a3038;
+    --mock-cafe-soft: #2a221c;
+    --mock-salon-soft: #24223a;
+    --mock-dental-soft: #18282f;
+    --mock-other-soft: #1d261c;
+    --device: #2e353f;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111418;
+  --surface: #181c22;
+  --surface-alt: #1e232a;
+  --border: #2a3038;
+  --border-strong: #3a424d;
+  --text: #e8eaed;
+  --text-muted: #a3abb6;
+  --primary: #6fb3c4;
+  --primary-hover: #8cc4d2;
+  --primary-contrast: #0e1a1f;
+  --primary-soft: #1a2a30;
+  --accent: #e0a85e;
+  --accent-contrast: #0e1a1f;
+  --accent-ink: #e0a85e;
+  --accent-soft: #2d261c;
+  --success: #5cc197;
+  --success-soft: #17291f;
+  --danger: #f2877d;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.2);
+
+  --mock-text: #e8eaed;
+  --mock-muted: #a3abb6;
+  --mock-bg: #1b2027;
+  --mock-line: #2a3038;
+  --mock-cafe-soft: #2a221c;
+  --mock-salon-soft: #24223a;
+  --mock-dental-soft: #18282f;
+  --mock-other-soft: #1d261c;
+  --device: #2e353f;
+}
+
+/* Utilidades de Tailwind mapeadas a los tokens: bg-surface, text-ink, etc. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--text);
+  --color-ink-muted: var(--text-muted);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-on-primary: var(--primary-contrast);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--accent-contrast);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-danger: var(--danger);
+
+  --color-mock-text: var(--mock-text);
+  --color-mock-muted: var(--mock-muted);
+  --color-mock-bg: var(--mock-bg);
+  --color-mock-line: var(--mock-line);
+  --color-mock-on: var(--mock-on);
+  --color-device: var(--device);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 12px;
+  --radius-control: 10px;
+  --shadow-soft: var(--shadow);
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem; /* 17px */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--text);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  ::selection {
+    background: var(--primary-soft);
+    color: var(--text);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ==========================================================================
+   Tipografía reutilizable
+   ========================================================================== */
+@layer components {
+  .heading-1 {
+    font-size: 2rem; /* 32px móvil */
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+  .heading-2 {
+    font-size: 1.625rem; /* 26px móvil */
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .heading-3 {
+    font-size: 1.1875rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+  }
+  .lead {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    max-width: 65ch;
+  }
+  .eyebrow {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--primary);
+  }
+
+  @media (min-width: 640px) {
+    .heading-1 {
+      font-size: 2.25rem;
+    }
+    .heading-2 {
+      font-size: 2rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .heading-1 {
+      font-size: 3.25rem; /* 52px escritorio */
+    }
+    .heading-2 {
+      font-size: 2.375rem; /* 38px */
+    }
+    .heading-3 {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+/* ==========================================================================
+   Animación de aparición (discreta)
+   Solo se oculta el contenido si hay JS (clase .js en <html>) y el usuario
+   no pidió reducir movimiento. Fade + 10 px, 250 ms.
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 250ms ease-out,
+      transform 250ms ease-out;
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js [data-reveal][data-shown] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Acordeón: altura animada con grid (sin JS de medición). */
+.collapse-grid {
+  display: grid;
+  grid-template-rows: 0fr;
+}
+.collapse-grid[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .collapse-grid {
+    transition: grid-template-rows 220ms ease-out;
+  }
+}
