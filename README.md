@@ -35,7 +35,8 @@ Todo el contenido está en `src/data/`. **No hace falta tocar componentes.**
 | --- | --- |
 | `src/data/site.ts` | Marca, WhatsApp, email, redes, razón social, RUC, Libro de Reclamaciones, menú y SEO |
 | `src/data/plans.ts` | **Planes y precios** (único lugar donde se definen) |
-| `src/data/content.ts` | Textos de hero, problemas, servicios W·A·S·D, pasos, garantía, comparativa, proyectos, formulario, equipo y llamado final |
+| `src/data/content.ts` | Textos de hero (incluida la conversación animada del celular), problemas, servicios W·A·S·D, pasos, garantía, comparativa, proyectos, formulario, equipo (fotos y video), llamado final y globito de WhatsApp |
+| `src/data/demos.ts` | Demos navegables por sector (`/demo/cafeteria/`, `/demo/barberia/`, `/demo/consultorio-dental/`) |
 | `src/data/sectors.ts` | Pestañas por sector y contenido de los mockups |
 | `src/data/faq.ts` | Preguntas frecuentes (también alimentan el JSON-LD `FAQPage`) |
 | `src/data/testimonials.ts` | Testimonios (sección **oculta** hasta tener datos reales) |
@@ -72,7 +73,9 @@ Ajustes de contraste respecto a la paleta original, para cumplir WCAG AA:
 | `[URL INSTAGRAM]`, `[URL FACEBOOK]`, `[URL TIKTOK]`, `[URL LINKEDIN]` | `src/data/site.ts` → `social` (quita las redes que no uses) |
 | `[RAZÓN SOCIAL]`, `[RUC]` | `src/data/site.ts` → `legal` |
 | `[URL LIBRO DE RECLAMACIONES]` | `src/data/site.ts` → `legal.complaintsBookUrl` (obligatorio en Perú) |
-| `[NOMBRE]`, `[ROL]`, `[FOTO]` (×4 fundadores) | `src/data/content.ts` → `team.members`; fotos en `/public` (WebP) y reemplazar el placeholder en `src/components/sections/Team.tsx` por `<Image>` |
+| `[NOMBRE]`, `[ROL]`, `[FOTO]` (×4 fundadores) | `src/data/content.ts` → `team.members`. Sube las fotos a `public/equipo/` (cuadradas, 600×600, WebP) y pon la ruta en `photo`, por ejemplo `"/equipo/ana.webp"`. El componente cambia solo del placeholder a la foto |
+| Video del equipo (opcional, 30–60 s) | Sube el MP4 y su portada a `public/video/` y completa `team.video.src` y `team.video.poster` en `src/data/content.ts`. Mientras `src` esté vacío, el bloque no aparece |
+| Fotos de las demos (opcional) | Las demos muestran recuadros rotulados ("Foto del salón"). Si un negocio real da permiso, se pueden reemplazar por sus fotos |
 | `[CONDICIONES DE LA GARANTÍA]` | `src/app/garantia/page.tsx` |
 | Texto de la política de privacidad (Ley N.º 29733) | `src/app/privacidad/page.tsx` |
 | Términos y condiciones | `src/app/terminos/page.tsx` |
@@ -83,6 +86,21 @@ Ajustes de contraste respecto a la paleta original, para cumplir WCAG AA:
 **Revisar con el equipo:** respuestas de las preguntas frecuentes (`src/data/faq.ts`), que describen políticas como factura, propiedad del dominio o cambios incluidos. También los textos de la comparativa (`src/data/content.ts`).
 
 **Qué no se inventó:** la página no tiene clientes, testimonios, reseñas, logos ni cifras de resultados. Los proyectos están rotulados como **"Demo"** y la tarjeta del reporte semanal del hero dice "Ejemplo ilustrativo", sin números.
+
+---
+
+## Animaciones y demos
+
+La página muestra el producto funcionando en lugar de decorarlo:
+
+- **Hero** (`src/components/mockups/HeroDemo.tsx`): el celular muestra la web de una cafetería y, después de la carga, se abre una conversación de WhatsApp: un cliente pregunta, la recepcionista con IA responde, se confirma la reserva y se llena la tarjeta del reporte semanal. Al final aparece "Ver de nuevo". El título, el texto y los botones no se animan, para no afectar el LCP.
+- **¿Te pasa esto?**: un chat con las mismas preguntas repetidas que aparecen al hacer scroll.
+- **Servicios**: teclas W·A·S·D que se presionan (clic, toque o teclado físico mientras la sección está en pantalla) y cambian el servicio y su vista de ejemplo.
+- **Cómo funciona**: la línea de tiempo se llena al entrar en pantalla y cada paso muestra lo que recibe el cliente.
+- **Proyectos**: cada tarjeta abre una demo navegable en `/demo/…/`. Las demos tienen `noindex` y una barra arriba que dice que son demos.
+- **Llamado final**: franja de color primario. El botón flotante muestra una vez por visita el globito "¿Te ayudamos…?" (solo en pantallas medianas o grandes).
+
+Todo se hace con CSS y un poco de JavaScript propio, sin librerías de animación. Con `prefers-reduced-motion` se ve directamente el estado final. Las clases `anim-*` están en `src/app/globals.css`.
 
 ---
 
@@ -138,7 +156,7 @@ src/
 
 ## Calidad (último build)
 
-Lighthouse en móvil: Performance 96 · Accessibility 100 · Best Practices 100 · SEO 100. Medido sobre el build estático servido con compresión.
+Lighthouse en móvil: Performance 96 · Accessibility 100 · Best Practices 100 · SEO 100. Medido sobre el build estático servido con compresión, **antes** de agregar las animaciones y las demos: hay que volver a medir.
 
 Se probó también lo siguiente:
 - Navegación completa con teclado: pestañas con flechas, Inicio y Fin; acordeón; menú móvil con Escape.

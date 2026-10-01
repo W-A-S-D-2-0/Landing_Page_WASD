@@ -4,7 +4,8 @@ import type { MockSiteContent, SectorTheme } from "@/data/sectors";
 import { cn } from "@/lib/cn";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 
-const themeVars: Record<SectorTheme, CSSProperties> = {
+/** Variables de color de cada sector (también las usan las demos navegables). */
+export const themeVars: Record<SectorTheme, CSSProperties> = {
   cafe: { "--mock-accent": "var(--mock-cafe)", "--mock-soft": "var(--mock-cafe-soft)" } as CSSProperties,
   salon: { "--mock-accent": "var(--mock-salon)", "--mock-soft": "var(--mock-salon-soft)" } as CSSProperties,
   dental: { "--mock-accent": "var(--mock-dental)", "--mock-soft": "var(--mock-dental-soft)" } as CSSProperties,

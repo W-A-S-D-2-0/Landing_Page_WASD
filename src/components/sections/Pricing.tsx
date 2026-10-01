@@ -55,7 +55,11 @@ function PlanCard({ plan, mode }: { plan: Plan; mode: BillingMode }) {
       <div className="mt-6 border-t border-line pt-5" aria-live="polite">
         <p className="flex flex-wrap items-baseline gap-x-1.5">
           {price.prefix && <span className="text-sm font-medium text-ink-muted">{price.prefix}</span>}
-          <span className="font-display text-[2rem] font-bold leading-none tracking-tight text-ink">
+          {/* La key reinicia la animación cuando el monto cambia con el interruptor. */}
+          <span
+            key={`${price.amount}-${price.period}`}
+            className="anim-fade-up font-display text-[2rem] font-bold leading-none tracking-tight text-ink"
+          >
             {price.amount === null ? "A cotizar" : formatSoles(price.amount)}
           </span>
           {price.period && <span className="text-[0.9375rem] font-medium text-ink-muted">{price.period}</span>}

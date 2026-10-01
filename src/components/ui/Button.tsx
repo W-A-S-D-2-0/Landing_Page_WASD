@@ -2,7 +2,7 @@ import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "reac
 import type { AnalyticsEvent } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "secondary" | "ghost" | "inverse";
 type Size = "md" | "lg";
 
 const base =
@@ -12,6 +12,8 @@ const variants: Record<Variant, string> = {
   primary: "bg-primary text-on-primary hover:bg-primary-hover",
   secondary: "border border-line-strong bg-surface text-ink hover:border-primary hover:text-primary",
   ghost: "text-primary hover:bg-primary-soft",
+  /** Para usar sobre fondos de color primario. */
+  inverse: "bg-on-primary text-primary hover:bg-primary-soft",
 };
 
 const sizes: Record<Size, string> = {

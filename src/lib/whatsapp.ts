@@ -9,6 +9,7 @@ export type WhatsAppIntent =
   | { type: "general" }
   | { type: "demo" }
   | { type: "plan"; planName: string }
+  | { type: "demoPage"; demoName: string }
   | { type: "lead"; message: string };
 
 const messages = {
@@ -16,6 +17,8 @@ const messages = {
   demo: "Hola WASD, quiero mi demo gratis. Les cuento de mi negocio:",
   plan: (planName: string) =>
     `Hola WASD, me interesa el plan ${planName}. ¿Me cuentan cómo empezamos?`,
+  demoPage: (demoName: string) =>
+    `Hola WASD, vi la demo de ${demoName} y quiero una web así para mi negocio.`,
 } as const;
 
 export function whatsappMessage(intent: WhatsAppIntent): string {
@@ -26,6 +29,8 @@ export function whatsappMessage(intent: WhatsAppIntent): string {
       return messages.demo;
     case "plan":
       return messages.plan(intent.planName);
+    case "demoPage":
+      return messages.demoPage(intent.demoName);
     case "lead":
       return intent.message;
   }

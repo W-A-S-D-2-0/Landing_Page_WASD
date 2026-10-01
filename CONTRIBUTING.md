@@ -68,7 +68,7 @@ src/
 
 1. **Textos y precios solo en `src/data/`.** Los precios viven únicamente en `src/data/plans.ts`.
 2. **Colores solo con tokens** de `src/app/globals.css` (`bg-surface`, `text-ink`, `text-primary`…). Nada de colores fijos en componentes.
-3. **Animaciones discretas:** usa `data-reveal` (fade + 10 px). Nada animado en el hero.
+3. **Animaciones discretas:** usa `data-reveal` (fade + 10 px) o las clases `anim-*` de `globals.css`, siempre dentro de `prefers-reduced-motion: no-preference`. En el hero no se animan el título, el texto ni los botones; solo el celular de demostración, después de la carga. Las animaciones muestran el producto funcionando, no decoran.
 4. **Nada inventado:** ni clientes, ni testimonios, ni reseñas, ni logos, ni cifras de resultados. Los ejemplos van rotulados como "Demo".
 5. **Accesibilidad:** HTML semántico, un solo H1, todo usable con teclado, áreas táctiles de al menos 44 px.
 6. **Antes de cada PR:** `npm run check` sin errores.

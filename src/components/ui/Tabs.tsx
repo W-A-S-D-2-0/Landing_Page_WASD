@@ -80,7 +80,7 @@ export function Tabs({ tabs, label }: { tabs: Tab[]; label: string }) {
           aria-labelledby={`${baseId}-tab-${tab.id}`}
           tabIndex={0}
           hidden={index !== active}
-          className="mt-8 rounded-card focus-visible:outline-offset-4"
+          className="anim-fade-up mt-8 rounded-card focus-visible:outline-offset-4"
         >
           {tab.content}
         </div>

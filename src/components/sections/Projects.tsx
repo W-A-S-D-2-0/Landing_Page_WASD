@@ -1,3 +1,5 @@
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { projects } from "@/data/content";
 import { mockFor } from "@/data/sectors";
 import { revealDelay } from "@/lib/cn";
@@ -12,7 +14,10 @@ export function Projects() {
       <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {projects.items.map((project, index) => (
           <li key={project.label} data-reveal style={revealDelay(index * 60)}>
-            <article className="h-full rounded-card border border-line bg-surface p-4">
+            <Link
+              href={`/demo/${project.slug}/`}
+              className="lift group block h-full rounded-card border border-line bg-surface p-4 hover:border-line-strong"
+            >
               <BrowserFrame>
                 <MockSite theme={project.sector} content={mockFor(project.sector)} layout="wide" />
               </BrowserFrame>
@@ -24,8 +29,15 @@ export function Projects() {
                   {project.label.replace(/^Demo · /, "")}
                 </h3>
                 <p className="mt-2 text-[0.9375rem] text-ink-muted">{project.text}</p>
+                <p className="mt-4 inline-flex items-center gap-1 text-[0.9375rem] font-semibold text-primary">
+                  {projects.openDemo}
+                  <ArrowUpRight
+                    aria-hidden="true"
+                    className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
+                </p>
               </div>
-            </article>
+            </Link>
           </li>
         ))}
       </ul>

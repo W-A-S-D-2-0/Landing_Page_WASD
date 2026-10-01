@@ -22,16 +22,50 @@ export const hero = {
     "Reporte semanal de resultados",
   ],
   mockupLabel:
-    "Ejemplo de una landing para cafetería vista en un celular, con carta, botón de reservas y WhatsApp",
+    "Ejemplo ilustrativo: un cliente escribe por WhatsApp desde la web de una cafetería, la recepcionista con IA le responde y su reserva queda confirmada",
+  /**
+   * Conversación de ejemplo que se anima dentro del celular del hero.
+   * Es ilustrativa: no representa a un cliente real.
+   */
+  chat: {
+    agentName: "Tu cafetería",
+    agentStatus: "Recepcionista IA · en línea",
+    messages: [
+      { from: "customer", text: "Hola, ¿tienen mesa para 4 hoy a las 8 p. m.?" },
+      { from: "agent", text: "¡Hola! Sí, tenemos mesa para 4 a las 8 p. m. ¿A nombre de quién la separo?" },
+      { from: "customer", text: "A nombre de Lucía, gracias" },
+      { from: "agent", text: "Listo, Lucía. Te enviamos un recordatorio una hora antes." },
+    ] as Array<{ from: "customer" | "agent"; text: string }>,
+    confirmation: "Reserva confirmada · Hoy, 8 p. m.",
+    replay: "Ver de nuevo",
+    reportTitle: "Tu reporte semanal",
+    reportRows: ["Visitas", "Clics a WhatsApp", "Reservas"],
+    reportNote: "Ejemplo ilustrativo",
+  },
 };
 
 export const problem: {
   title: string;
   intro: string;
+  chat: { title: string; status: string; messages: Array<{ text: string; time: string }>; pending: string };
   items: Array<{ icon: LucideIcon; title: string; text: string }>;
 } = {
   title: "¿Te pasa esto?",
   intro: "Si vendes por Instagram y WhatsApp, seguro reconoces alguno.",
+  /** Chat ilustrativo: las mismas preguntas, una y otra vez. */
+  chat: {
+    title: "Tu WhatsApp, un día cualquiera",
+    status: "12 chats sin responder",
+    messages: [
+      { text: "Hola, ¿hasta qué hora atienden?", time: "9:12" },
+      { text: "¿Cuánto cuesta el menú?", time: "9:40" },
+      { text: "¿Dónde quedan exactamente?", time: "11:05" },
+      { text: "Hola, ¿hasta qué hora atienden hoy?", time: "12:31" },
+      { text: "¿Tienen delivery?", time: "13:18" },
+      { text: "¿Hasta qué hora atienden?", time: "15:47" },
+    ],
+    pending: "Y tú, atendiendo el local.",
+  },
   items: [
     {
       icon: MessagesSquare,
@@ -61,17 +95,28 @@ export type Service = {
   name: string;
   description: string;
   benefits: string[];
+  /** Mini vista de ejemplo que se muestra al elegir la tecla. */
+  preview: { title: string; lines: string[] };
 };
 
 export const services: {
   title: string;
   intro: string;
+  hint: string;
+  keyboardHint: string;
+  keyLabel: string;
+  tablistLabel: string;
   items: Service[];
   closing: string;
 } = {
   title: "Todo lo que necesitas, con un solo equipo",
   intro:
     "WASD son las teclas para moverse en un videojuego. Cada una es una forma de mover tu negocio.",
+  hint: "Toca una tecla para ver cada servicio.",
+  /** Se muestra solo en pantallas grandes, donde suele haber teclado físico. */
+  keyboardHint: "También puedes presionar W, A, S o D en tu teclado.",
+  keyLabel: "Tecla",
+  tablistLabel: "Servicios de WASD",
   items: [
     {
       key: "W",
@@ -82,6 +127,10 @@ export const services: {
         "Lista para aparecer en Google",
         "Botón directo a tu WhatsApp",
       ],
+      preview: {
+        title: "Tu web en Google",
+        lines: ["cafetería cerca de mí", "Tu negocio · Barranco, Lima", "Abierto ahora · Cierra 9 p. m.", "Ver carta · Reservar · WhatsApp"],
+      },
     },
     {
       key: "A",
@@ -92,6 +141,10 @@ export const services: {
         "Te pasa las consultas importantes",
         "Pide reseñas a tus clientes",
       ],
+      preview: {
+        title: "WhatsApp, 11:48 p. m.",
+        lines: ["¿Atienden mañana domingo?", "Sí, de 9 a. m. a 6 p. m. ¿Te separo una mesa?"],
+      },
     },
     {
       key: "S",
@@ -102,6 +155,10 @@ export const services: {
         "Adelantos con Yape o Plin",
         "Tarjeta de fidelización",
       ],
+      preview: {
+        title: "Agenda de hoy",
+        lines: ["1:00 p. m. · Mesa para 2 · Adelanto recibido", "4:30 p. m. · Pedido para recoger", "8:00 p. m. · Mesa para 4 · Recordatorio enviado"],
+      },
     },
     {
       key: "D",
@@ -112,6 +169,10 @@ export const services: {
         "Automatizaciones internas",
         "Conexión con tus herramientas",
       ],
+      preview: {
+        title: "Lo que tu negocio necesite",
+        lines: ["App para tus clientes", "Panel de ventas e inventario", "Conexión con tu sistema actual"],
+      },
     },
   ],
   closing: "Empiezas con tu web y subes de nivel cuando lo necesites.",
@@ -120,24 +181,33 @@ export const services: {
 export const howItWorks = {
   title: "Cómo funciona",
   intro: "Cuatro pasos, sin reuniones largas ni términos técnicos.",
+  /** `artifact`: la pieza real que ve el cliente en cada paso (se dibuja en HowItWorks). */
   steps: [
     {
       title: "Nos cuentas de tu negocio",
       text: "Llenas un formulario corto o nos escribes. Te toma 2 minutos.",
+      artifact: { kind: "form", lines: ["Nombre del negocio", "Rubro", "Tu WhatsApp"] },
     },
     {
       title: "Te enviamos tu demo gratis",
       text: "Diseñamos una demo personalizada de tu web, sin costo.",
+      artifact: { kind: "message", lines: ["Hola, aquí está la demo de tu web. Revísala con calma y nos cuentas qué cambiarías."] },
     },
     {
       title: "La ajustamos y la publicamos",
       text: "Hacemos los cambios contigo y la publicamos en 48 horas.",
+      artifact: { kind: "site", lines: ["tunegocio.pe", "Publicada"] },
     },
     {
       title: "Recibes tus resultados",
       text: "Cada semana te llegan por WhatsApp tus visitas, clics y reservas.",
+      artifact: { kind: "report", lines: ["Reporte del lunes", "Visitas", "Clics a WhatsApp", "Reservas"] },
     },
-  ],
+  ] as Array<{
+    title: string;
+    text: string;
+    artifact: { kind: "form" | "message" | "site" | "report"; lines: string[] };
+  }>,
 };
 
 export const guarantee = {
@@ -217,24 +287,29 @@ export const comparison: {
 export const projects = {
   title: "Proyectos",
   intro:
-    "Así se ven nuestras landings por sector. Son demos de ejemplo: pronto mostraremos proyectos de clientes reales.",
+    "Así se ven nuestras landings por sector. Son demos de ejemplo que puedes recorrer: pronto mostraremos proyectos de clientes reales.",
+  /** `slug` = ruta de la demo navegable (/demo/slug/), definida en src/data/demos.ts. */
   items: [
     {
       label: "Demo · Cafetería en Barranco",
       sector: "cafe" as const,
+      slug: "cafeteria",
       text: "Carta digital, reservas de mesa y botón de WhatsApp.",
     },
     {
       label: "Demo · Barbería en Miraflores",
       sector: "salon" as const,
+      slug: "barberia",
       text: "Agenda de citas por barbero y galería de cortes.",
     },
     {
       label: "Demo · Consultorio dental en San Borja",
       sector: "dental" as const,
+      slug: "consultorio-dental",
       text: "Tratamientos explicados en simple y reserva de primera cita.",
     },
   ],
+  openDemo: "Ver demo",
   cta: "Quiero una demo para mi negocio",
 };
 
@@ -261,18 +336,43 @@ export const leadForm = {
 export const team = {
   title: "Quiénes somos",
   text: "Somos un equipo joven de Lima que cree que cualquier negocio, por pequeño que sea, merece una web que de verdad le traiga clientes. Trabajamos cerca de ti, por WhatsApp y sin tecnicismos.",
+  /**
+   * `photo`: ruta en /public (por ejemplo "/equipo/nombre.webp", cuadrada,
+   * 600×600, WebP). Mientras sea "[FOTO]" se muestra un placeholder.
+   * Usar fotos reales, nunca generadas con IA.
+   */
   members: [
     { name: "[NOMBRE]", role: "[ROL]", photo: "[FOTO]" },
     { name: "[NOMBRE]", role: "[ROL]", photo: "[FOTO]" },
     { name: "[NOMBRE]", role: "[ROL]", photo: "[FOTO]" },
     { name: "[NOMBRE]", role: "[ROL]", photo: "[FOTO]" },
   ],
+  /**
+   * Video corto de un fundador (30–60 s). Sube el MP4 y su portada a
+   * /public/video/. Mientras `src` esté vacío, el bloque no se muestra.
+   */
+  video: {
+    src: "",
+    poster: "",
+    title: "Te contamos cómo trabajamos",
+    text: "Un minuto con el equipo, sin guion de vendedor.",
+    playLabel: "Reproducir video",
+    duration: "1 min",
+  },
 };
 
 export const finalCta = {
   title: "Tu demo está a un mensaje de distancia.",
   text: "Escríbenos por WhatsApp y te mostramos cómo se vería la web de tu negocio. Gratis.",
   button: "Pedir mi demo por WhatsApp",
+  secondary: "Prefiero llenar el formulario",
+};
+
+/** Globito del botón flotante de WhatsApp (aparece una sola vez por visita). */
+export const whatsappBubble = {
+  text: "¿Te ayudamos con la web de tu negocio?",
+  close: "Cerrar mensaje",
+  delayMs: 12000,
 };
 
 export const footer = {

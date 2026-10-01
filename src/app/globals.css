@@ -45,6 +45,7 @@
   --mock-muted: #5b6470;
   --mock-bg: #ffffff;
   --mock-line: #ebebe6;
+  --mock-chat: #f4f1ec;
   --device: #1c2128;
 }
 
@@ -75,6 +76,7 @@
     --mock-muted: #a3abb6;
     --mock-bg: #1b2027;
     --mock-line: #2a3038;
+    --mock-chat: #14181d;
     --mock-cafe-soft: #2a221c;
     --mock-salon-soft: #24223a;
     --mock-dental-soft: #18282f;
@@ -109,6 +111,7 @@
   --mock-muted: #a3abb6;
   --mock-bg: #1b2027;
   --mock-line: #2a3038;
+  --mock-chat: #14181d;
   --mock-cafe-soft: #2a221c;
   --mock-salon-soft: #24223a;
   --mock-dental-soft: #18282f;
@@ -141,6 +144,7 @@
   --color-mock-muted: var(--mock-muted);
   --color-mock-bg: var(--mock-bg);
   --color-mock-line: var(--mock-line);
+  --color-mock-chat: var(--mock-chat);
   --color-mock-on: var(--mock-on);
   --color-device: var(--device);
 
@@ -282,6 +286,121 @@
   .js [data-reveal][data-shown] {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* ==========================================================================
+   Animaciones de producto (chat del hero, teclas, línea de tiempo…)
+   Todas viven dentro de no-preference: con prefers-reduced-motion se ve el
+   estado final, sin movimiento.
+   ========================================================================== */
+@keyframes wasd-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes wasd-sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes wasd-typing {
+  0%,
+  60%,
+  100% {
+    opacity: 0.35;
+    transform: none;
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+@keyframes wasd-ring {
+  from {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--mock-accent, var(--primary)) 45%, transparent);
+  }
+  to {
+    box-shadow: 0 0 0 10px transparent;
+  }
+}
+@keyframes wasd-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .anim-fade-up {
+    animation: wasd-fade-up 300ms ease-out both;
+  }
+  .anim-sheet-up {
+    animation: wasd-sheet-up 380ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .anim-typing > span {
+    animation: wasd-typing 1s ease-in-out infinite;
+  }
+  .anim-typing > span:nth-child(2) {
+    animation-delay: 150ms;
+  }
+  .anim-typing > span:nth-child(3) {
+    animation-delay: 300ms;
+  }
+  .anim-ring {
+    animation: wasd-ring 1s ease-out 2;
+  }
+  .anim-grow {
+    transform-origin: left;
+    animation: wasd-grow 900ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: var(--grow-delay, 0ms);
+  }
+
+  /* Línea de tiempo de "Cómo funciona": se llena al entrar en pantalla. */
+  .js [data-reveal] .timeline-fill {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1400ms cubic-bezier(0.3, 0.7, 0.2, 1) 150ms;
+  }
+  @media (min-width: 1024px) {
+    .js [data-reveal] .timeline-fill {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+  }
+  .js [data-reveal][data-shown] .timeline-fill {
+    transform: none;
+  }
+
+  /* Tecla presionada: se hunde un poco. */
+  .keycap-press {
+    transition:
+      transform 120ms ease-out,
+      border-bottom-width 120ms ease-out,
+      background-color 200ms ease-out,
+      color 200ms ease-out;
+  }
+
+  /* Tarjetas con enlace: se elevan apenas al pasar el mouse. */
+  .lift {
+    transition:
+      transform 200ms ease-out,
+      box-shadow 200ms ease-out,
+      border-color 200ms ease-out;
+  }
+  .lift:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
   }
 }
 
