@@ -53,7 +53,7 @@ Todos los links salen de `src/lib/whatsapp.ts`, que tiene un mensaje distinto pa
 En `src/data/testimonials.ts`, agrega testimonios **reales** (con permiso del cliente) y cambia `enabled: true`.
 
 ### Colores y tipografía
-Los tokens de color (tema claro y oscuro) están en `src/app/globals.css`. Las fuentes son Plus Jakarta Sans e Inter, cargadas con `next/font` y `display: swap`.
+Los tokens de color (tema claro y oscuro) están en `src/app/globals.css`. Las fuentes son Plus Jakarta Sans e Inter. Están alojadas en `src/fonts/` (licencia SIL OFL 1.1) y se cargan con `next/font/local` y `display: swap`, así que el build no depende de Google Fonts.
 
 Ajustes de contraste respecto a la paleta original, para cumplir WCAG AA:
 - `--success` en tema claro: de `#2E7D5B` a `#2A7353`, para lograr 4.5:1 sobre `--surface-alt`.
@@ -132,6 +132,7 @@ src/
 │   ├── Analytics.tsx     # GA4 + Meta Pixel
 │   └── JsonLd.tsx        # ProfessionalService + FAQPage
 ├── data/                 # TODO el contenido editable
+├── fonts/                # Inter y Plus Jakarta Sans (woff2) + licencias
 └── lib/                  # whatsapp, analytics, lead (submitLead), utilidades
 ```
 
