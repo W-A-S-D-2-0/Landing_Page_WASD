@@ -338,14 +338,13 @@ export const team = {
   text: "Somos un equipo joven de Lima que cree que cualquier negocio, por pequeño que sea, merece una web que de verdad le traiga clientes. Trabajamos cerca de ti, por WhatsApp y sin tecnicismos.",
   /**
    * `photo`: ruta en /public (por ejemplo "/equipo/nombre.webp", cuadrada,
-   * 600×600, WebP). Mientras sea "[FOTO]" se muestra un placeholder.
+   * 300–600 px, WebP). Mientras sea "[FOTO]" se muestra un placeholder.
    * Usar fotos reales, nunca generadas con IA.
    */
   members: [
-    { name: "[NOMBRE]", role: "[ROL]", photo: "[FOTO]" },
-    { name: "[NOMBRE]", role: "[ROL]", photo: "[FOTO]" },
-    { name: "[NOMBRE]", role: "[ROL]", photo: "[FOTO]" },
-    { name: "[NOMBRE]", role: "[ROL]", photo: "[FOTO]" },
+    { name: "Pedro André Guía Carrasco", role: "Founder", photo: "/equipo/pedro-guia.webp" },
+    { name: "Anyelo Bill Alejos Jesús", role: "Founder", photo: "/equipo/anyelo-alejos.webp" },
+    { name: "Mateo Italo Loechle Arias", role: "Founder", photo: "/equipo/mateo-loechle.webp" },
   ],
   /**
    * Video corto de un fundador (30–60 s). Sube el MP4 y su portada a
