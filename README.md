@@ -73,7 +73,6 @@ Ajustes de contraste respecto a la paleta original, para cumplir WCAG AA:
 | `[URL INSTAGRAM]`, `[URL FACEBOOK]`, `[URL TIKTOK]`, `[URL LINKEDIN]` | `src/data/site.ts` → `social` (quita las redes que no uses) |
 | `[RAZÓN SOCIAL]`, `[RUC]` | `src/data/site.ts` → `legal` |
 | `[URL LIBRO DE RECLAMACIONES]` | `src/data/site.ts` → `legal.complaintsBookUrl` (obligatorio en Perú) |
-| `[NOMBRE]`, `[ROL]`, `[FOTO]` (×4 fundadores) | `src/data/content.ts` → `team.members`. Sube las fotos a `public/equipo/` (cuadradas, 600×600, WebP) y pon la ruta en `photo`, por ejemplo `"/equipo/ana.webp"`. El componente cambia solo del placeholder a la foto |
 | Video del equipo (opcional, 30–60 s) | Sube el MP4 y su portada a `public/video/` y completa `team.video.src` y `team.video.poster` en `src/data/content.ts`. Mientras `src` esté vacío, el bloque no aparece |
 | Fotos de las demos (opcional) | Las demos muestran recuadros rotulados ("Foto del salón"). Si un negocio real da permiso, se pueden reemplazar por sus fotos |
 | `[CONDICIONES DE LA GARANTÍA]` | `src/app/garantia/page.tsx` |
