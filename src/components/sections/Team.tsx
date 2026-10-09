@@ -10,10 +10,10 @@ export function Team() {
   return (
     <Section id="equipo" title={team.title} intro={team.text}>
       <FounderVideo />
-      <ul className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-5">
+      <ul className="grid gap-4 sm:grid-cols-3 lg:gap-5">
         {team.members.map((member, index) => (
           <li
-            key={index}
+            key={member.name}
             data-reveal
             style={revealDelay(index * 60)}
             className="rounded-card border border-line bg-surface p-5 text-center sm:p-6"
